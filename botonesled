@@ -1,0 +1,40 @@
+const int ROJO = D2;
+const int VERDE = D3;
+const int AZUL = D4;
+
+const int BOTON_A = D9;
+const int BOTON_B = D8;
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(ROJO, OUTPUT);
+  pinMode(VERDE, OUTPUT);
+  pinMode(AZUL, OUTPUT);
+  pinMode(BOTON_A, INPUT_PULLUP);
+  pinMode(BOTON_B, INPUT_PULLUP);
+}
+
+void loop() {
+  bool a = digitalRead(BOTON_A) == LOW;
+  bool b = digitalRead(BOTON_B) == LOW;
+
+  if (a && b) {
+    digitalWrite(ROJO, LOW);
+    digitalWrite(VERDE, LOW);
+    digitalWrite(AZUL, HIGH);
+  } else {
+    digitalWrite(AZUL, LOW);
+
+    if (a) {
+      digitalWrite(ROJO, HIGH);
+    } else {
+      digitalWrite(ROJO, LOW);
+    }
+
+    if (b) {
+      digitalWrite(VERDE, HIGH);
+    } else {
+      digitalWrite(VERDE, LOW);
+    }
+  }
+}
